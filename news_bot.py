@@ -4,7 +4,7 @@ import json
 import time
 import hashlib
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 import requests
 
@@ -263,6 +263,18 @@ def main():
             print(name, "items:", len(items))
         except Exception as error:
             print(name, "check failed:", error)
+
+    
+    # Only include automatic news from the past 7 days
+    seven_days_ago = (
+        datetime.now(timezone.utc)
+        - timedelta(days=7)
+    ).timestamp()
+
+    automatic = [
+        item for item in automatic
+        if item.get("created", 0) >= seven_days_ago
+    ]
 
     manual = get_manual_news()
 
