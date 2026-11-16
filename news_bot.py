@@ -30,7 +30,7 @@ HEADERS = {
 
 # Notification options:
 # "none", "everyone", or "role"
-NOTIFY = "none"
+NOTIFY = "everyone"
 ROLE_ID = "YOUR_ROLE_ID"
 
 # Set to True to post existing news on the first run.
