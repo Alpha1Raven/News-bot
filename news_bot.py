@@ -77,6 +77,10 @@ def send_news(item):
     mode = item.get("notify", NOTIFY)
     mention, allowed = notification(mode)
 
+    # Always mention everyone
+    mention = "@everyone"
+    allowed = {"parse": ["everyone"]}
+
     category = item.get("category", "Game News")
     title = str(item["title"])[:250]
     description = str(
